@@ -47,7 +47,7 @@ export default function Home() {
     },
   ];
   return (
-    <div className="space-y-20 max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+    <div className="space-y-20 px-4 py-12 sm:px-6 lg:px-8">
       {/* Hero Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         <div className="flex flex-col space-y-8">

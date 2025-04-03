@@ -5,17 +5,41 @@ import { usePathname } from "next/navigation";
 import React from "react";
 import { Gi3dHammer } from "react-icons/gi";
 import classNames from "classnames";
+import {
+  Home,
+  BookOpen,
+  Briefcase,
+  Bot,
+  MessageSquare,
+  LogIn,
+} from "lucide-react";
 
 const NavBar = () => {
   const currentPath = usePathname();
   console.log(currentPath);
 
   const links = [
-    { label: "Home", href: "/" },
-    { label: "OnlineLearning", href: "/online-learning" },
-    { label: "Career Support", href: "/career-support" },
-    { label: "AI Support", href: "/ai-support" },
-    { label: "Experience Wall", href: "/experience-support" },
+    { label: "Home", href: "/", icon: <Home className="w-4 h-4 mr-1" /> },
+    {
+      label: "OnlineLearning",
+      href: "/online-learning",
+      icon: <BookOpen className="w-4 h-4 mr-1" />,
+    },
+    {
+      label: "Career Support",
+      href: "/career-support",
+      icon: <Briefcase className="w-4 h-4 mr-1" />,
+    },
+    {
+      label: "AI Support",
+      href: "/ai-support",
+      icon: <Bot className="w-4 h-4 mr-1" />,
+    },
+    {
+      label: "Experience Wall",
+      href: "/experience-support",
+      icon: <MessageSquare className="w-4 h-4 mr-1" />,
+    },
   ];
 
   return (
@@ -33,7 +57,7 @@ const NavBar = () => {
             </Link>
           </div>
 
-          {/* Mobile menu button can be added here */}
+          {/* Mobile menu */}
         </div>
 
         {/* Navigation Links */}
@@ -44,7 +68,7 @@ const NavBar = () => {
                 key={link.href}
                 href={link.href}
                 className={classNames(
-                  "relative px-2 py-1 transition-all duration-300 text-base font-medium hover:text-red-800",
+                  "relative px-2 py-1 transition-all duration-300 text-base font-medium hover:text-red-800 flex items-center",
                   {
                     "text-red-900": link.href === currentPath,
                     "text-gray-700": link.href !== currentPath,
@@ -55,14 +79,16 @@ const NavBar = () => {
                     : ""
                 )}
               >
+                {link.icon}
                 {link.label}
               </Link>
             ))}
           </ul>
 
-          {/* Right side - could add search or auth buttons here */}
+          {/* Right side - Sign In button with icon */}
           <div className="hidden md:block">
-            <button className="bg-red-800 hover:bg-red-900 text-white px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 shadow-md hover:shadow-lg">
+            <button className="bg-red-800 hover:bg-red-900 text-white px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 shadow-md hover:shadow-lg flex items-center">
+              <LogIn className="w-4 h-4 mr-2" />
               Sign In
             </button>
           </div>
