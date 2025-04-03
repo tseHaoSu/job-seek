@@ -1,103 +1,173 @@
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+import {
+  BookOpen,
+  Calendar,
+  Database,
+  FileText,
+  Mail,
+  MessageSquare,
+  Sparkles,
+  Users,
+  Video,
+} from "lucide-react";
 import Image from "next/image";
 
 export default function Home() {
+  const tools = [
+    {
+      id: "Word",
+      icon: <FileText className="h-6 w-6 text-blue-600" />,
+    },
+    {
+      id: "Outlook",
+      icon: <Mail className="h-6 w-6 text-blue-700" />,
+    },
+    {
+      id: "Excel",
+      icon: <Database className="h-6 w-6 text-green-600" />,
+    },
+    {
+      id: "Teams",
+      icon: <MessageSquare className="h-6 w-6 text-purple-600" />,
+    },
+    {
+      id: "Calendar",
+      icon: <Calendar className="h-6 w-6 text-blue-500" />,
+    },
+    {
+      id: "OneDrive",
+      icon: <Video className="h-6 w-6 text-blue-400" />,
+    },
+  ];
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div className="space-y-20 max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
+      {/* Hero Section */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div className="flex flex-col space-y-8">
+          <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl text-red-900 leading-tight">
+            Free Online Learning!
+          </h1>
+          <h3 className="scroll-m-20 text-xl md:text-2xl tracking-tight text-gray-700 leading-relaxed">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Voluptatibus tempora sapiente fuga, illo vitae hic itaque. Quisquam,
+            iusto? Quasi, corrupti!
+          </h3>
+          <Button
+            variant="outline"
+            className="bg-red-800 hover:bg-red-900 text-white text-lg font-medium w-48 h-12 rounded-xl shadow-lg transform transition-transform duration-300 hover:scale-105"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <Sparkles className="mr-2" />
+            Try it out
+          </Button>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <div className="mt-8 md:mt-0">
           <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
+            src="/man.jpeg"
+            width={500}
+            height={500}
+            alt="Picture of the author"
+            className="rounded-2xl shadow-2xl w-full object-cover hover:shadow-red-200 transition-shadow duration-300"
           />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+        </div>
+      </div>
+
+      {/* Banner Section */}
+      <div className="w-full p-12 bg-gradient-to-r from-red-50 to-red-100 flex flex-row items-center justify-center rounded-2xl shadow-md">
+        <h3 className="scroll-m-20 text-xl md:text-2xl tracking-tight text-red-800 text-center max-w-3xl">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellat,
+          numquam.
+        </h3>
+      </div>
+
+      {/* Cards Section */}
+      <div className="flex flex-col md:flex-row items-stretch gap-8">
+        <Card
+          className="w-full transition-all duration-300 ease-in-out
+                    hover:shadow-xl hover:border-blue-300 hover:scale-105
+                    cursor-pointer rounded-xl overflow-hidden"
         >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+          <div className="flex justify-center pt-8 text-blue-600">
+            <Users size={64} />
+          </div>
+          <CardHeader className="text-center">
+            <CardTitle className="text-2xl font-bold text-gray-800">
+              Online Course
+            </CardTitle>
+            <CardDescription className="text-base text-gray-600">
+              You can choose or be recommended by us to study online courses
+            </CardDescription>
+          </CardHeader>
+        </Card>
+
+        <div className="hidden md:flex items-center">
+          <Separator orientation="vertical" className="h-full bg-gray-300" />
+        </div>
+
+        <Card
+          className="w-full transition-all duration-300 ease-in-out
+                    hover:shadow-xl hover:border-blue-300 hover:scale-105
+                    cursor-pointer rounded-xl overflow-hidden"
         >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          <div className="flex justify-center pt-8 text-blue-600">
+            <BookOpen size={64} />
+          </div>
+          <CardHeader className="text-center">
+            <CardTitle className="text-2xl font-bold text-gray-800">
+              Personalized Quiz
+            </CardTitle>
+            <CardDescription className="text-base text-gray-600">
+              You can choose or be recommended by us to study online courses
+            </CardDescription>
+          </CardHeader>
+        </Card>
+      </div>
+
+      {/* Second Banner */}
+      <div className="w-full p-12 bg-gradient-to-r from-red-100 to-red-50 flex flex-row items-center justify-center rounded-2xl shadow-md">
+        <h3 className="scroll-m-20 text-xl md:text-2xl tracking-tight text-red-800 text-center max-w-3xl">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Repellat,
+          numquam.
+        </h3>
+      </div>
+
+      {/* Tools Section */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <div className="space-y-6">
+          <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl text-red-900 leading-tight">
+            Difficult Deciding?
+          </h1>
+          <h3 className="scroll-m-20 text-xl md:text-2xl tracking-tight text-gray-700 leading-relaxed">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Voluptatibus tempora sapiente fuga, illo vitae hic itaque. Quisquam,
+            iusto? Quasi, corrupti!
+          </h3>
+        </div>
+
+        <div className="grid grid-cols-2 gap-4">
+          {tools.map((tool) => (
+            <div
+              key={tool.id}
+              className="flex items-center p-6 bg-white rounded-xl shadow-md border border-gray-200 transition-all duration-300 ease-in-out
+                    hover:shadow-xl hover:border-blue-300 hover:scale-105 hover:bg-gray-50
+                    cursor-pointer"
+            >
+              <div className="mr-4">{tool.icon}</div>
+              <div>
+                <h3 className="font-semibold text-lg text-gray-900">
+                  {tool.id}
+                </h3>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
