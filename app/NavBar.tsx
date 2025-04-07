@@ -69,7 +69,7 @@ const NavBar = () => {
                 href="/"
                 className="font-extrabold text-xl text-red-900 tracking-tight hover:text-red-800 transition-colors duration-300"
               >
-                Logo
+                StillSkilled
               </Link>
             </div>
           </div>
