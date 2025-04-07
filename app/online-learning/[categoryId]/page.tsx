@@ -1,8 +1,9 @@
 import { prisma } from "@/prisma/client";
-import { notFound } from "next/navigation";
+import { Award, BookOpen, Star, Trophy } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight, BookOpen, Award } from "lucide-react";
+import { notFound } from "next/navigation";
+import ModuleCard from "./_components/ModuleCard";
+import QuizCard from "./_components/QuizCard";
 
 const page = async ({
   params,
@@ -23,11 +24,9 @@ const page = async ({
       modules: true,
     },
   });
-
   if (!category) {
     notFound();
   }
-
   return (
     <div className="mx-auto px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
@@ -39,18 +38,26 @@ const page = async ({
             <p className="text-xl text-gray-700 leading-relaxed">
               {category.description}
             </p>
-            <div className="pt-4 flex flex-col gap-2">
+            <div className="pt-4 flex flex-col gap-5">
               <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-800 w-fit">
                 <BookOpen className="mr-1 h-4 w-4" />
                 {category.quizzes.length} Quizzes Available
               </span>
               <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-200 text-green-800 w-fit">
                 <BookOpen className="h-4 w-4 mr-1" />
-                {category.quizzes.reduce(
-                  (acc, quiz) => acc + quiz.questions.length,
-                  0
-                )}{" "}
-                Questions Available
+                {category.modules.length} Learning Modules Available
+              </span>
+              <span className="flex flex-col gap-1">
+                <div className="flex justify-between items-center text-sm text-gray-600 mb-1">
+                  <span className="flex items-center">Category Progress</span>
+                  <span className="text-green-600 font-medium">33%</span>
+                </div>
+                <div className="relative h-3 w-full bg-gray-200 rounded-full mb-4">
+                  <div className="absolute top-0 left-0 h-full w-1/3 bg-green-500 rounded-full"></div>
+                  <span className="absolute top-1/2 left-1/3 transform -translate-y-1/2 -translate-x-1/2">
+                    <Star className="h-10 w-10 text-yellow-500 fill-yellow-500" />
+                  </span>
+                </div>
               </span>
             </div>
           </div>
@@ -65,34 +72,13 @@ const page = async ({
           />
         </div>
       </div>
-
       <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center">
-        <Award className="mr-2 h-7 w-7 text-red-600" />
+        <Trophy className="mr-2 h-7 w-7 text-red-600" />
         Learning Modules
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
         {category.modules.map((module) => (
-          <Link href={`/modules/${module.id}`} key={module.id}>
-            <div className="bg-white rounded-xl shadow-lg hover:shadow-xl p-6 transition-all duration-300 hover:-translate-y-1 border border-gray-100 h-full flex flex-col">
-              <div
-                className={`h-3 w-1/3 ${
-                  module.attempt ? "bg-green-500" : "bg-red-500"
-                } rounded-full mb-4`}
-              ></div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">
-                {module.name}
-              </h3>
-              <p className="text-gray-600 mb-4 flex-grow">
-                Learn the fundamentals in this module
-              </p>
-              <div className="mt-auto flex justify-between items-center">
-                <span className="text-sm font-medium text-blue-600">
-                  Start Learning
-                </span>
-                <ArrowRight className="h-5 w-5 text-blue-600" />
-              </div>
-            </div>
-          </Link>
+          <ModuleCard key={module.id} module={module} />
         ))}
         {category.modules.length === 0 && (
           <div className="col-span-full text-center py-8">
@@ -102,34 +88,13 @@ const page = async ({
           </div>
         )}
       </div>
-
       <h2 className="text-3xl font-bold text-gray-900 mb-8 flex items-center">
         <Award className="mr-2 h-7 w-7 text-red-600" />
         Available Quizzes
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {category.quizzes.map((quiz) => (
-          <Link href={`/quizzes/${quiz.id}`} key={quiz.id}>
-            <div className="bg-white rounded-xl shadow-lg hover:shadow-xl p-6 transition-all duration-300 hover:-translate-y-1 border border-gray-100 h-full flex flex-col">
-              <div
-                className={`h-3 w-1/3 ${
-                  quiz.attempt ? "bg-green-500" : "bg-red-500"
-                } rounded-full mb-4`}
-              ></div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">
-                {quiz.title}
-              </h3>
-              <p className="text-gray-600 mb-4 flex-grow">
-                Take this quiz to test your knowledge
-              </p>
-              <div className="mt-auto flex justify-between items-center">
-                <span className="text-sm font-medium text-red-600">
-                  Start Quiz
-                </span>
-                <ArrowRight className="h-5 w-5 text-red-600" />
-              </div>
-            </div>
-          </Link>
+          <QuizCard key={quiz.id} quiz={quiz} />
         ))}
         {category.quizzes.length === 0 && (
           <div className="text-center py-12">

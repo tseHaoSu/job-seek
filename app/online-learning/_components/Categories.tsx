@@ -37,7 +37,7 @@ const Categories = async () => {
           key={index}
         >
           <Card className="h-full rounded-xl overflow-hidden hover:shadow-xl hover:border-blue-300 hover:scale-105 duration-300 cursor-pointer">
-            <div className="flex justify-center pt-8 text-blue-600">
+            <div className="flex justify-center pt-8 text-red-700">
               {getIcon(category.name)}
             </div>
             <CardHeader className="text-center">
