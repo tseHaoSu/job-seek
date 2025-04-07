@@ -31,7 +31,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <NavBar />
-        <main className="flex-1 p-3 max-w-[1400px] mx-auto">{children}</main>
+        <main className="p-5 mt-15 max-w-[1400px] mx-auto">{children}</main>
         <Footer />
       </body>
     </html>

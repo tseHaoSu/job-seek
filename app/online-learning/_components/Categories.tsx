@@ -9,7 +9,6 @@ import { Category } from "@prisma/client";
 import { BookOpen, FileText, Presentation, Users } from "lucide-react";
 import Link from "next/link";
 
-
 const Categories = async () => {
   const categories: Category[] = await prisma.category.findMany();
 
@@ -32,7 +31,11 @@ const Categories = async () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       {categories.map((category, index) => (
-        <Link href="#" className="block" key={index}>
+        <Link
+          href={`/online-learning/${category.id}`}
+          className="block"
+          key={index}
+        >
           <Card className="h-full rounded-xl overflow-hidden hover:shadow-xl hover:border-blue-300 hover:scale-105 duration-300 cursor-pointer">
             <div className="flex justify-center pt-8 text-blue-600">
               {getIcon(category.name)}

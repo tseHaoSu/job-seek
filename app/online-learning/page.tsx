@@ -1,7 +1,7 @@
 import Banner from "./_components/Banner";
 import Header from "./_components/Header";
 import Header2 from "./_components/Header2";
-import Subjects from "./_components/Categories";
+import Categories from "./_components/Categories";
 
 const Page = () => {
   return (
@@ -9,7 +9,7 @@ const Page = () => {
       <Header />
       <Banner />
       <Header2 />
-      <Subjects />
+      <Categories />
     </div>
   );
 };
