@@ -132,10 +132,10 @@ const TrueFalseQuiz = () => {
       {!startQuiz && (
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
           <div className="order-2 lg:order-1 space-y-6">
-            <h1 className="text-4xl font-extrabold lg:text-5xl text-red-900 leading-tight">
+            <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl text-red-900">
               {quiz.name}
             </h1>
-            <p className="text-xl text-gray-700 leading-relaxed">
+            <p className="leading-7 text-xl text-gray-700 [&:not(:first-child)]:mt-6">
               {quiz.description}
             </p>
             <div className="pt-4 flex flex-col gap-5">
@@ -162,7 +162,7 @@ const TrueFalseQuiz = () => {
               width={600}
               height={600}
               alt="Quiz featured image"
-              className="rounded-2xl shadow-2xl w-full h-100 object-cover hover:shadow-red-200 duration-300 transform hover:scale-105 transition-all"
+              className="rounded-2xl shadow-2xl w-full h-100 object-cover"
             />
           </div>
         </div>
@@ -172,16 +172,16 @@ const TrueFalseQuiz = () => {
       {startQuiz && (
         <div id="quiz-questions" className="mt-8 scroll-mt-8">
           {showResults ? (
-            <Card className="max-w-6xl mx-auto shadow-lg">
+            <Card className="max-w-6xl mx-auto border-none">
               <CardHeader>
-                <CardTitle className="text-3xl font-bold text-red-900 flex items-center">
+                <CardTitle className="scroll-m-20 text-3xl font-semibold tracking-tight text-red-900 flex items-center">
                   <Trophy className="mr-2 h-7 w-7 text-red-600" />
                   Quiz Results
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-3">
                 <div className="mb-8 p-6 bg-gray-50 rounded-lg">
-                  <p className="text-2xl font-semibold mb-2">
+                  <p className="scroll-m-20 text-2xl font-semibold tracking-tight mb-2">
                     Your Score: {calculateScore()}/{quiz.questions.length}
                   </p>
                   <p className="text-xl text-gray-700 mb-4">
@@ -214,13 +214,15 @@ const TrueFalseQuiz = () => {
                       Great job! You passed the quiz!
                     </p>
                   ) : (
-                    <p className="text-red-600 font-medium">
+                    <p className="text-red-600 font-medium leading-6 mt-2">
                       You might need to study more before retaking this quiz.
                     </p>
                   )}
                 </div>
 
-                <h3 className="text-xl font-semibold mb-4">Question Review:</h3>
+                <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight mb-4">
+                  Question Review:
+                </h3>
                 {quiz.questions.map((question, index) => (
                   <Card
                     key={question.id}
@@ -249,7 +251,7 @@ const TrueFalseQuiz = () => {
                             Correct answer:{" "}
                             {question.correctAnswer ? "True" : "False"}
                           </p>
-                          <p className="text-sm text-gray-600 mt-2">
+                          <p className="text-sm text-gray-600 leading-6 mt-2">
                             {question.explanation}
                           </p>
                         </div>
@@ -261,13 +263,13 @@ const TrueFalseQuiz = () => {
               <CardFooter className="flex flex-row gap-4 justify-center">
                 <button
                   onClick={resetQuiz}
-                  className="border-2 border-red-600 text-red-600 py-1 px-3 rounded-md text-xl font-semibold"
+                  className="border-2 border-red-600 text-red-600 py-1 px-3 rounded-md text-lg font-medium leading-6 hover:bg-red-50 transition-colors"
                 >
                   Retake Quiz
                 </button>
                 <button
                   onClick={exitQuiz}
-                  className="border-2 border-gray-600 text-gray-600 py-1 px-3 rounded-md text-xl font-semibold flex items-center"
+                  className="border-2 border-gray-600 text-gray-600 py-1 px-3 rounded-md text-lg font-medium leading-6 flex items-center hover:bg-gray-50 transition-colors"
                 >
                   <Home className="h-4 w-4 mr-1" />
                   Exit Quiz
@@ -289,8 +291,8 @@ const TrueFalseQuiz = () => {
                   ></div>
                 </div>
 
-                <h3 className="text-xl text-gray-700 leading-relaxed pt-4">
-                  {currentQuestion.question}
+                <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight text-red-900 mb-4">
+                  Question {currentQuestionIndex + 1}
                 </h3>
 
                 <div className="pt-4 flex flex-col gap-5">
@@ -322,7 +324,7 @@ const TrueFalseQuiz = () => {
                     <button
                       onClick={goToPreviousQuestion}
                       disabled={currentQuestionIndex === 0}
-                      className="flex items-center px-3 py-1 rounded-md text-sm text-red-600"
+                      className="flex items-center px-3 py-1 rounded-md text-m  text-red-600"
                     >
                       <ArrowLeft className="h-4 w-4 mr-1" />
                       Previous
@@ -331,7 +333,7 @@ const TrueFalseQuiz = () => {
                     <button
                       onClick={goToNextQuestion}
                       disabled={userAnswers[currentQuestionIndex] === null}
-                      className="flex items-center px-3 py-1 rounded-md text-sm text-red-600"
+                      className="flex items-center px-3 py-1 rounded-md text-m text-red-600"
                     >
                       {currentQuestionIndex === quiz.questions.length - 1
                         ? "Finish Quiz"

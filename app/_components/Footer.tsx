@@ -4,7 +4,7 @@ import { Mail } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="w-full bg-gradient-to-r from-red-50 to-red-100 border-t mt-20">
+    <footer className="w-full bg-gradient-to-r from-red-50 to-red-100 border-t mt-auto">
       <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Logo and description */}

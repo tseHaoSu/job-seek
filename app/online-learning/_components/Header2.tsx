@@ -9,10 +9,7 @@ const Header2 = () => {
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque sunt
         animi omnis quod obcaecati sequi doloremque nemo sint culpa, atque
         labore est maxime. Molestias consequatur quia praesentium voluptatum ab
-        illo. Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque
-        sunt animi omnis quod obcaecati sequi doloremque nemo sint culpa, atque
-        labore est maxime. Molestias consequatur quia praesentium voluptatum ab
-        illo.
+        illo. Lorem ipsum dolor sit amet consectetur adipisicing elit. 
       </h3>
     </div>
   );

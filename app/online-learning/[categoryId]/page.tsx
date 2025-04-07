@@ -24,6 +24,15 @@ const page = async ({
       modules: true,
     },
   });
+
+  const progressPercentage =
+    category
+      ? Math.round(
+          (category.modules.filter((module) => module.attempt).length /
+            category.modules.length) *
+            100
+        )
+      : 0;
   if (!category) {
     notFound();
   }
@@ -41,20 +50,48 @@ const page = async ({
             <div className="pt-4 flex flex-col gap-5">
               <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-800 w-fit">
                 <BookOpen className="mr-1 h-4 w-4" />
-                {category.quizzes.length} Quizzes Available
+                {category.quizzes.filter((quiz) => quiz.attempt).length} out of{" "}
+                {category.quizzes.length} Quizzes Attempted
               </span>
               <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-200 text-green-800 w-fit">
                 <BookOpen className="h-4 w-4 mr-1" />
-                {category.modules.length} Learning Modules Available
+                {category.modules.filter((module) => module.attempt).length} out
+                of {category.modules.length} Modules Complete
               </span>
               <span className="flex flex-col gap-1">
                 <div className="flex justify-between items-center text-sm text-gray-600 mb-1">
                   <span className="flex items-center">Category Progress</span>
-                  <span className="text-green-600 font-medium">33%</span>
+                  <span className="text-green-600 font-medium">
+                    {Math.round(
+                      (category.modules.filter((module) => module.attempt)
+                        .length /
+                        category.modules.length) *
+                        100
+                    ) || 0}
+                    %
+                  </span>
                 </div>
                 <div className="relative h-3 w-full bg-gray-200 rounded-full mb-4">
-                  <div className="absolute top-0 left-0 h-full w-1/3 bg-green-500 rounded-full"></div>
-                  <span className="absolute top-1/2 left-1/3 transform -translate-y-1/2 -translate-x-1/2">
+                  <div
+                    className="absolute top-0 left-0 h-full bg-green-500 rounded-full"
+                    style={{
+                      width: `${
+                        Math.round(
+                          (category.modules.filter((module) => module.attempt)
+                            .length /
+                            category.modules.length) *
+                            100
+                        ) || 0
+                      }%`,
+                    }}
+                  ></div>
+                  <span
+                    className="absolute top-1/2 transform -translate-y-1/2"
+                    style={{
+                      left: `${Math.min(progressPercentage, 100)}%`,
+                      marginLeft: `-10px`, // Half of the star's width to center it at the end of progress bar
+                    }}
+                  >
                     <Star className="h-10 w-10 text-yellow-500 fill-yellow-500" />
                   </span>
                 </div>
