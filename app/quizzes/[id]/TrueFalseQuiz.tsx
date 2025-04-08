@@ -27,7 +27,7 @@ const TrueFalseQuiz = () => {
 
   // Dummy quiz data
   const quiz = {
-    name: "JavaScript Fundamentals",
+    title: "JavaScript Fundamentals",
     description:
       "Test your knowledge of JavaScript core concepts including variables, functions, objects, and modern ES6+ features.",
     timeEstimate: "5 minutes",
@@ -133,7 +133,7 @@ const TrueFalseQuiz = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
           <div className="order-2 lg:order-1 space-y-6">
             <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl text-red-900">
-              {quiz.name}
+              {quiz.title}
             </h1>
             <p className="leading-7 text-xl text-gray-700 [&:not(:first-child)]:mt-6">
               {quiz.description}

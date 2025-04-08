@@ -1,9 +1,11 @@
 import TrueFalseQuiz from "./TrueFalseQuiz";
 
-export default function QuizPage() {
+const page = () => {
   return (
     <div>
       <TrueFalseQuiz />
     </div>
   );
 }
+
+export default page;

@@ -56,10 +56,10 @@ const NavBar = () => {
 
   return (
     <>
-      <div className="sm:hidden">
+      <div className="block md:hidden">
         <MobileSideBar links={links} />
       </div>
-      <header className={`hidden sm:block sticky top-0 z-50 shadow-md bg-white transition-all duration-500 transform ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
+      <header className={`hidden md:block sticky top-0 z-50 shadow-md bg-white transition-all duration-500 transform ${isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
         <div className="mx-auto px-4 sm:px-6 lg:px-8">
           {/* Logo Section */}
           <div className="w-full h-20 bg-gradient-to-r from-red-50 to-red-100 flex flex-row items-center justify-between rounded-b-lg">
