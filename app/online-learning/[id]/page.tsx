@@ -5,15 +5,11 @@ import { notFound } from "next/navigation";
 import ModuleCard from "./_components/ModuleCard";
 import QuizCard from "./_components/QuizCard";
 
-const page = async ({
-  params,
-}: {
-  params: Promise<{ categoryId: string }>;
-}) => {
-  const { categoryId } = await params;
+const page = async ({ params }: { params: Promise<{ id: string }> }) => {
+  const { id } = await params;
   const category = await prisma.category.findUnique({
     where: {
-      id: parseInt(categoryId),
+      id: parseInt(id),
     },
     include: {
       quizzes: {
@@ -25,14 +21,35 @@ const page = async ({
     },
   });
 
+  // Get counts directly with chained operations
+  const {
+    moduleStats: { completed: completedModules, total: totalModules },
+    quizStats: { completed: completedQuizzes, total: totalQuizzes },
+  } = category
+    ? {
+        moduleStats: {
+          completed: category.modules.filter((module) => module.attempt).length,
+          total: category.modules.length,
+        },
+        quizStats: {
+          completed: category.quizzes.filter((quiz) => quiz.attempt).length,
+          total: category.quizzes.length,
+        },
+      }
+    : {
+        moduleStats: { completed: 0, total: 0 },
+        quizStats: { completed: 0, total: 0 },
+      };
+
   const progressPercentage =
-    category
+    totalModules + totalQuizzes > 0
       ? Math.round(
-          (category.modules.filter((module) => module.attempt).length /
-            category.modules.length) *
+          ((completedModules + completedQuizzes) /
+            (totalModules + totalQuizzes)) *
             100
         )
       : 0;
+
   if (!category) {
     notFound();
   }
@@ -50,46 +67,31 @@ const page = async ({
             <div className="pt-4 flex flex-col gap-5">
               <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-red-100 text-red-800 w-fit">
                 <BookOpen className="mr-1 h-4 w-4" />
-                {category.quizzes.filter((quiz) => quiz.attempt).length} out of{" "}
-                {category.quizzes.length} Quizzes Attempted
+                {completedQuizzes} out of {totalQuizzes} Quizzes Attempted
               </span>
               <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-green-200 text-green-800 w-fit">
                 <BookOpen className="h-4 w-4 mr-1" />
-                {category.modules.filter((module) => module.attempt).length} out
-                of {category.modules.length} Modules Complete
+                {completedModules} out of {totalModules} Modules Complete
               </span>
               <span className="flex flex-col gap-1">
                 <div className="flex justify-between items-center text-sm text-gray-600 mb-1">
                   <span className="flex items-center">Category Progress</span>
                   <span className="text-green-600 font-medium">
-                    {Math.round(
-                      (category.modules.filter((module) => module.attempt)
-                        .length /
-                        category.modules.length) *
-                        100
-                    ) || 0}
-                    %
+                    {progressPercentage}%
                   </span>
                 </div>
-                <div className="relative h-3 w-full bg-gray-200 rounded-full mb-4">
+                <div className="relative h-3 w-full bg-gray-200 rounded-full mb-4 mt-5">
                   <div
                     className="absolute top-0 left-0 h-full bg-green-500 rounded-full"
                     style={{
-                      width: `${
-                        Math.round(
-                          (category.modules.filter((module) => module.attempt)
-                            .length /
-                            category.modules.length) *
-                            100
-                        ) || 0
-                      }%`,
+                      width: `${progressPercentage}%`,
                     }}
                   ></div>
                   <span
                     className="absolute top-1/2 transform -translate-y-1/2"
                     style={{
                       left: `${Math.min(progressPercentage, 100)}%`,
-                      marginLeft: `-10px`, // Half of the star's width to center it at the end of progress bar
+                      marginLeft: `-10px`, // Half of the  star width to center at the end
                     }}
                   >
                     <Star className="h-10 w-10 text-yellow-500 fill-yellow-500" />
