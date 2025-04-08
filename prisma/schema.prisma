@@ -29,12 +29,14 @@ model Module {
 }
 
 model Quiz {
-  id         Int        @id @default(autoincrement())
-  title      String
-  categoryId Int
-  attempt    Boolean    @default(false)
-  questions  Question[]
-  category   Category   @relation(fields: [categoryId], references: [id])
+  id           Int     @id @default(autoincrement())
+  title        String
+  description  String     @default("")
+  timeEstimate String     @default("5 minutes")
+  categoryId   Int
+  attempt      Boolean    @default(false)
+  questions    Question[]
+  category     Category   @relation(fields: [categoryId], references: [id])
 
   @@map("quizzes")
 }
