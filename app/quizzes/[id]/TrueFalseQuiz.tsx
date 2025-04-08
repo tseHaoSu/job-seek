@@ -172,10 +172,10 @@ const TrueFalseQuiz = () => {
       {startQuiz && (
         <div id="quiz-questions" className="mt-8 scroll-mt-8">
           {showResults ? (
-            <Card className="max-w-6xl mx-auto border-none">
+            <Card className="max-w-6xl mx-auto border-none shadow-none bg-transparent">
               <CardHeader>
-                <CardTitle className="scroll-m-20 text-3xl font-semibold tracking-tight text-red-900 flex items-center">
-                  <Trophy className="mr-2 h-7 w-7 text-red-600" />
+                <CardTitle className="scroll-m-20 text-4xl font-semibold tracking-tight text-red-900 flex items-center">
+                  <Trophy className="mr-2 h-10 w-10 text-red-600" />
                   Quiz Results
                 </CardTitle>
               </CardHeader>
